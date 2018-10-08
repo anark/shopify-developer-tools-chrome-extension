@@ -11,5 +11,5 @@
    "name": "Shopify Developer Tools",
    "permissions": [ "activeTab", "<all_urls>", "storage" ],
    "short_name": "Shopify Developer Tools",
-   "version": "0.2"
+   "version": "0.3"
 }

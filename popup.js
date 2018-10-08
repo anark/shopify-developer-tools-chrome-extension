@@ -3,8 +3,8 @@ var settings = {}
 chrome.storage.sync.get('shopifyPartnerId', function(data) {
   settings.shopifyPartnerId = data.shopifyPartnerId;
   field = document.getElementById("shopifyPartnerIdField");
-  field.value = settings.shopifyPartnerId;
   if(data.shopifyPartnerId.length){
+    field.value = settings.shopifyPartnerId;
     document.getElementById('settings').style.display = 'none';
   }
 });
