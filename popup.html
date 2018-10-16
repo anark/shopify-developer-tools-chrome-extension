@@ -3,20 +3,26 @@
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
-  <body>
-    <ul class="list-group text-center">
-      <li id="settings">
-        <form id="shopifySettings">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" name="shopifyPartnerId" id="shopifyPartnerIdField" placeholder="Shopify Partner ID">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="Submit">Save</button>
-            </div>
-          </div>
-        </form>
-      </li>
+  <body style="width: 300px;">
+    <div id="settings" class="text-center">
+      <h3>Settings</h3>
+      <form id="shopifySettings">
+        <div class="form-group">
+          <label for="shopifyPartnerId">Shopify Partner ID</label>
+          <input type="text" class="form-control" name="shopifyPartnerId" id="shopifyPartnerIdField" placeholder="Shopify Partner ID">
+        </div>
+        <button class="btn btn-outline-secondary" type="Submit">Save</button>
+      </form>
+    </div>
+    <ul id="results" class="list-group text-center" style="display:none">
+      <li class="list-group-item text-right" id="settingsLink"><a href="#">settings</a></li>
       <li class="list-group-item" id="shop"></li>
-      <li class="list-group-item alert" id="theme"></li>
+      <li class="list-group-item">
+        <div class="alert alert-danger" style="display:none" id="notPurchasedAlert">
+          This theme might be pirated
+        </div>
+        <div id="theme"></div>
+      </li>
       <li class="list-group-item" id="access"></li>
       <li class="list-group-item" id="edit"></li>
     </ul>

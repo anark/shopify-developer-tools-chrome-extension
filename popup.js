@@ -3,9 +3,10 @@ var settings = {}
 chrome.storage.sync.get('shopifyPartnerId', function(data) {
   settings.shopifyPartnerId = data.shopifyPartnerId;
   field = document.getElementById("shopifyPartnerIdField");
-  if(data.shopifyPartnerId.length){
+  if(data.shopifyPartnerId && data.shopifyPartnerId.length){
     field.value = settings.shopifyPartnerId;
     document.getElementById('settings').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
   }
 });
 
@@ -14,10 +15,10 @@ var updateFields = function(data){
     document.getElementById('shop').innerHTML = data.shop;
     document.getElementById('theme').innerHTML = data.theme;
     if(data.themeId != "null"){
-      document.getElementById('theme').classList.add("alert-success")
+      document.getElementById('notPurchasedAlert').style.display = 'none';
     }
     else{
-      document.getElementById('theme').classList.add("alert-danger")
+      document.getElementById('notPurchasedAlert').style.display = 'block';
     }
 
     var node = document.createElement("a");
@@ -60,4 +61,9 @@ object = document.getElementById("shopifySettings");
 object.addEventListener("submit", function(object){
   field = document.getElementById("shopifyPartnerIdField");
   chrome.storage.sync.set({ shopifyPartnerId: field.value });
+});
+
+document.getElementById('settingsLink').addEventListener('click', function(){
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('settings').style.display = 'block';
 });
