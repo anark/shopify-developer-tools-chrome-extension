@@ -11,14 +11,16 @@ chrome.storage.sync.get('shopifyPartnerId', function(data) {
 });
 
 var updateFields = function(data){
-  if(data.shop && data.theme && data.shop != "false" && data.theme != "false"){
+  if(data.shop && data.shop != "false"){
     document.getElementById('shop').innerHTML = data.shop;
-    document.getElementById('theme').innerHTML = data.theme;
-    if(data.themeId != "null"){
-      document.getElementById('notPurchasedAlert').style.display = 'none';
-    }
-    else{
-      document.getElementById('notPurchasedAlert').style.display = 'block';
+    if(data.theme && data.theme != "false"){
+      document.getElementById('theme').innerHTML = data.theme;
+      if(data.themeId != "null"){
+        document.getElementById('notPurchasedAlert').style.display = 'none';
+      }
+      else{
+        document.getElementById('notPurchasedAlert').style.display = 'block';
+      }
     }
 
     var node = document.createElement("a");
@@ -38,7 +40,12 @@ var updateFields = function(data){
     document.getElementById('edit').appendChild(node);
 
     var node = document.createElement("a");
-    node.href = "https://partners.shopify.com/" + settings.shopifyPartnerId + "/stores/" + data.shopId;
+    if(data.shopId && data.shopId != "false"){
+      node.href = "https://partners.shopify.com/" + settings.shopifyPartnerId + "/stores/" + data.shopId;
+    }
+    else{
+      node.href = "https://partners.shopify.com/" + settings.shopifyPartnerId + "/managed_stores?status=active&q=" + data.shop
+    }
     node.target = '_blank';
     node.className = "btn btn-primary"
     node.appendChild(document.createTextNode("View in Partner Account"));

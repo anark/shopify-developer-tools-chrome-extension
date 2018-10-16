@@ -1,5 +1,12 @@
 existingScript = document.getElementById("shopifyChromeDeveloperTools")
-if(existingScript){
+
+var shopLabel = document.querySelectorAll("[data-attr-identifier='custom_data.shop']")[0]
+
+if(shopLabel){
+  var shopUrl = shopLabel.nextElementSibling.querySelectorAll('[data-content]')[0].getAttribute('data-content')
+  chrome.runtime.sendMessage({msg: "shop-data", data: { shop: shopUrl } } );
+}
+else if(existingScript){
   var shopUrl = existingScript.getAttribute("data-shopify-shop");
   var themeName = existingScript.getAttribute("data-shopify-theme");
   var themeId = existingScript.getAttribute("data-shopify-theme-id");
