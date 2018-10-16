@@ -10,6 +10,14 @@
         <div class="form-group">
           <label for="shopifyPartnerId">Shopify Partner ID</label>
           <input type="text" class="form-control" name="shopifyPartnerId" id="shopifyPartnerIdField" placeholder="Shopify Partner ID">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="editorType" value="code" id="editorTypeCode">
+            <label class="form-check-label" for="editorTypeCode">Edit Code</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="editorType" value="customize" id="editorTypeOptions">
+            <label class="form-check-label" for="editorTypeOptions">Edit Theme Settings</label>
+          </div>
         </div>
         <button class="btn btn-outline-secondary" type="Submit">Save</button>
       </form>

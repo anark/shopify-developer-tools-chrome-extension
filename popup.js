@@ -1,10 +1,16 @@
 var settings = {}
 
-chrome.storage.sync.get('shopifyPartnerId', function(data) {
-  settings.shopifyPartnerId = data.shopifyPartnerId;
-  field = document.getElementById("shopifyPartnerIdField");
+chrome.storage.sync.get(['shopifyPartnerId', 'codeEditor'], function(data) {
+  settings = data;
+  partnerIdField = document.getElementById("shopifyPartnerIdField");
+  if(data.codeEditor){
+    document.getElementById("editorTypeCode").checked = true;
+  }
+  else{
+    document.getElementById("editorTypeOptions").checked = true;
+  }
   if(data.shopifyPartnerId && data.shopifyPartnerId.length){
-    field.value = settings.shopifyPartnerId;
+    partnerIdField.value = settings.shopifyPartnerId;
     document.getElementById('settings').style.display = 'none';
     document.getElementById('results').style.display = 'block';
   }
@@ -32,7 +38,10 @@ var updateFields = function(data){
     document.getElementById('access').appendChild(node);
 
     var node = document.createElement("a");
-    node.href = "https://" + data.shop + "/admin/themes/current/editor";
+    node.href = "https://" + data.shop + "/admin/themes/current";
+    if(!settings.codeEditor){
+      node.href = node.href + "/editor"
+    }
     node.target = "_blank";
     node.className = "btn btn-primary";
     node.appendChild(document.createTextNode("Edit Theme"));
@@ -74,8 +83,9 @@ window.onload = function() {
 
 object = document.getElementById("shopifySettings");
 object.addEventListener("submit", function(object){
-  field = document.getElementById("shopifyPartnerIdField");
-  chrome.storage.sync.set({ shopifyPartnerId: field.value });
+  var shopifyPartnerId = document.getElementById("shopifyPartnerIdField").value;
+  var codeEditor = document.getElementById("editorTypeCode").checked;
+  chrome.storage.sync.set({ shopifyPartnerId: shopifyPartnerId, codeEditor: codeEditor });
 });
 
 document.getElementById('settingsLink').addEventListener('click', function(){
