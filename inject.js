@@ -3,7 +3,8 @@ if(existingScript){
   var shopUrl = existingScript.getAttribute("data-shopify-shop");
   var themeName = existingScript.getAttribute("data-shopify-theme");
   var themeId = existingScript.getAttribute("data-shopify-theme-id");
-  chrome.runtime.sendMessage({msg: "shop-data", data: { shop: shopUrl, theme: themeName, themeId: themeId } } );
+  var shopId = existingScript.getAttribute("data-shopify-shop-id");
+  chrome.runtime.sendMessage({msg: "shop-data", data: { shop: shopUrl, theme: themeName, themeId: themeId, shopId: shopId } } );
 }
 else{
   var node = document.getElementsByTagName('body')[0];
@@ -18,7 +19,8 @@ else{
         var shopUrl = script.getAttribute("data-shopify-shop");
         var themeName = script.getAttribute("data-shopify-theme");
         var themeId = script.getAttribute("data-shopify-theme-id");
-        chrome.runtime.sendMessage({msg: "shop-data", data: { shop: shopUrl, theme: themeName, themeId: themeId } } );
+        var shopId = script.getAttribute("data-shopify-shop-id");
+        chrome.runtime.sendMessage({msg: "shop-data", data: { shop: shopUrl, theme: themeName, themeId: themeId, shopId: shopId } } );
       }
     });
   });

@@ -36,6 +36,14 @@ var updateFields = function(data){
     node.appendChild(document.createTextNode("Edit Theme"));
     document.getElementById('edit').innerHTML = "";
     document.getElementById('edit').appendChild(node);
+
+    var node = document.createElement("a");
+    node.href = "https://partners.shopify.com/" + settings.shopifyPartnerId + "/stores/" + data.shopId;
+    node.target = '_blank';
+    node.className = "btn btn-primary"
+    node.appendChild(document.createTextNode("View in Partner Account"));
+    document.getElementById('login').innerHTML = "";
+    document.getElementById('login').appendChild(node);
   }
   else if(data.shop == "false"){
     document.getElementById('shop').innerHTML = "Not a Shopify Store";
