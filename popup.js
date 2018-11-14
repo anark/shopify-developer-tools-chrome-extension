@@ -1,6 +1,6 @@
 var settings = {}
 
-chrome.storage.sync.get(['shopifyPartnerId', 'codeEditor'], function(data) {
+chrome.storage.sync.get(['shopifyPartnerId', 'codeEditor', 'customButton'], function(data) {
   settings = data;
   partnerIdField = document.getElementById("shopifyPartnerIdField");
   if(data.codeEditor){
@@ -8,6 +8,10 @@ chrome.storage.sync.get(['shopifyPartnerId', 'codeEditor'], function(data) {
   }
   else{
     document.getElementById("editorTypeOptions").checked = true;
+  }
+  if(data.customButton){
+    document.getElementById("customButtonName").value = settings.customButton.name;
+    document.getElementById("customButtonURL").value = settings.customButton.url;
   }
   if(data.shopifyPartnerId && data.shopifyPartnerId.length){
     partnerIdField.value = settings.shopifyPartnerId;
@@ -60,6 +64,15 @@ var updateFields = function(data){
     node.appendChild(document.createTextNode("View in Partner Account"));
     document.getElementById('login').innerHTML = "";
     document.getElementById('login').appendChild(node);
+    if(settings.customButton.name && settings.customButton.url){
+      var node = document.createElement("a");
+      node.href = Mustache.render(settings.customButton.url, data);
+      node.target = "_blank";
+      node.className = "btn btn-primary";
+      node.appendChild(document.createTextNode(settings.customButton.name));
+      document.getElementById('custom').innerHTML = "";
+      document.getElementById('custom').appendChild(node);
+    }
   }
   else if(data.shop == "false"){
     document.getElementById('shop').innerHTML = "Not a Shopify Store";
@@ -85,7 +98,8 @@ object = document.getElementById("shopifySettings");
 object.addEventListener("submit", function(object){
   var shopifyPartnerId = document.getElementById("shopifyPartnerIdField").value;
   var codeEditor = document.getElementById("editorTypeCode").checked;
-  chrome.storage.sync.set({ shopifyPartnerId: shopifyPartnerId, codeEditor: codeEditor });
+  var customButton = { name: document.getElementById("customButtonName").value, url: document.getElementById("customButtonURL").value };
+  chrome.storage.sync.set({ shopifyPartnerId: shopifyPartnerId, codeEditor: codeEditor, customButton: customButton });
 });
 
 document.getElementById('settingsLink').addEventListener('click', function(){
