@@ -3,26 +3,21 @@ var settings = {}
 function addCustomButtonField(options={}){
   var customButtonSection = document.getElementById('customButtonInputs')
   var node = document.createElement("div");
-  node.className = "row customButtonInput";
+  node.className = "customButtonInput";
+  node.style="margin-bottom: 20px";
 
-  var nameInputSection = document.createElement("div")
-  nameInputSection.className = "col";
   var nameInput = document.createElement("input");
   nameInput.type = "text";
   nameInput.className = "form-control customButtonName";
   nameInput.placeholder = "Button Name";
   nameInput.value = options.name;
-  nameInputSection.appendChild(nameInput);
 
-  var linkInputSection = document.createElement("div")
-  linkInputSection.className = "col";
   var linkInput = document.createElement("input");
   linkInput.type = "text";
   linkInput.className = "form-control customButtonURL";
   linkInput.placeholder = "Button URL use Can use {{ shop }} and {{ shopId }} and {{ theme }} and {{ themeId }}";
   linkInput.value = options.url;
-  linkInputSection.appendChild(linkInput);
-  node.appendChild(nameInputSection);
+  node.appendChild(nameInput);
   node.appendChild(linkInput);
   customButtonSection.appendChild(node);
 }
