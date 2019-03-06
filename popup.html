@@ -18,15 +18,10 @@
             <input class="form-check-input" type="radio" name="editorType" value="customize" id="editorTypeOptions">
             <label class="form-check-label" for="editorTypeOptions">Edit Theme Settings</label>
           </div>
-          <label for="customButton">Custom Button</label>
-            <div class="row">
-              <div class="col">
-                <input type="text" class="form-control" id="customButtonName" placeholder="Button Name">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" id="customButtonURL" placeholder="Button URL use Can use {{ shop }} and {{ shopId }} and {{ theme }} and {{ themeId }}">
-              </div>
+          <label for="customButton">Custom Buttons</label>
+            <div id="customButtonInputs">
             </div>
+            <a href="#" id="addCustomButton">Add Custom Button</a>
         </div>
         <button class="btn btn-outline-secondary" type="Submit">Save</button>
       </form>
@@ -43,7 +38,7 @@
       <li class="list-group-item" id="access"></li>
       <li class="list-group-item" id="edit"></li>
       <li class="list-group-item" id="login"></li>
-      <li class="list-group-item" id="custom"></li>
+      <div id="custom"></div>
     </ul>
     <script type="text/javascript" src="mustache.min.js"></script>
     <script type="text/javascript" src="popup.js"></script>

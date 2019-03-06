@@ -9,7 +9,6 @@ chrome.runtime.onMessage.addListener(
       chrome.runtime.sendMessage({msg:"data-updated", data: data})
     }
     if (request.msg === "popup-opened") {
-      console.log(data)
       sendResponse({data: data});
     }
   }
