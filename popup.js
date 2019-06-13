@@ -63,7 +63,7 @@ var updateFields = function(data){
     }
 
     var node = document.createElement("a");
-    node.href = "https://partners.shopify.com/" + settings.shopifyPartnerId + "/managed_stores/new?shop_domain=" + data.shop;
+    node.href = "https://partners.shopify.com/" + settings.shopifyPartnerId + "stores/new?store_type=managed_store&store_domain=" + data.shop;
     node.target = "_blank";
     node.className = "btn btn-primary";
     node.appendChild(document.createTextNode("Get Access"));
