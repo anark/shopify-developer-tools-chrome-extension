@@ -86,7 +86,7 @@ var updateFields = function(data){
       node.href = "https://partners.shopify.com/" + settings.shopifyPartnerId + "/stores/" + data.shopId;
     }
     else{
-      node.href = "https://partners.shopify.com/" + settings.shopifyPartnerId + "/managed_stores?status=active&q=" + data.shop
+      node.href = "https://partners.shopify.com/" + settings.shopifyPartnerId + "/managed_stores?&q=" + data.shop
     }
     node.target = '_blank';
     node.className = "btn btn-primary"
