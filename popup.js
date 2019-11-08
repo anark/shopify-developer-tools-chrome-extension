@@ -51,7 +51,11 @@ addButtonLink.addEventListener('click', function(){
 
 var updateFields = function(data){
   if(data.shop && data.shop != "false"){
-    document.getElementById('shop').innerHTML = data.shop;
+    var node = document.createElement("a");
+    node.href = "https://" + data.shop;
+    node.target = "_blank";
+    node.appendChild(document.createTextNode(data.shop));
+    document.getElementById('shop').innerHTML = node;
     if(data.theme && data.theme != "false"){
       document.getElementById('theme').innerHTML = data.theme;
       if(data.themeId != "null"){
