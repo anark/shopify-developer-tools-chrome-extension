@@ -55,7 +55,8 @@ var updateFields = function(data){
     node.href = "https://" + data.shop;
     node.target = "_blank";
     node.appendChild(document.createTextNode(data.shop));
-    document.getElementById('shop').innerHTML = node;
+    document.getElementById('shop').innerHTML = "";
+    document.getElementById('shop').appendChild(node);
     if(data.theme && data.theme != "false"){
       document.getElementById('theme').innerHTML = data.theme;
       if(data.themeId != "null"){
